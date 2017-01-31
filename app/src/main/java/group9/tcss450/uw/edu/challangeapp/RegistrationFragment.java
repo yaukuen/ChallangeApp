@@ -1,29 +1,25 @@
 package group9.tcss450.uw.edu.challangeapp;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ChoicesFragment.OnFragmentInteractionListener} interface
+ * {@link RegistrationFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class ChoicesFragment extends Fragment implements View.OnClickListener {
+public class RegistrationFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    public static int LOGIN = R.id.loginButton;
-    public static int REGISTER = R.id.registrationButton;
 
-    public ChoicesFragment() {
+    public RegistrationFragment() {
         // Required empty public constructor
     }
 
@@ -32,30 +28,15 @@ public class ChoicesFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_choices, container, false);
-        Button b = (Button) v.findViewById(R.id.loginButton);
-        b.setOnClickListener(this);
-        b = (Button) v.findViewById(R.id.registrationButton);
-        b.setOnClickListener(this);
-
-        return v;
+        return inflater.inflate(R.layout.fragment_registration, container, false);
     }
 
-    @Override
-    public void onClick(View view) {
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            switch (view.getId()) {
-                case R.id.loginButton:
-                    mListener.onFragmentInteraction(R.id.loginButton);
-                    break;
-                case R.id.registrationButton:
-                    mListener.onFragmentInteraction(R.id.registrationButton);
-                    break;
-            }
+            mListener.onFragmentInteraction(uri);
         }
     }
-
-
 
     @Override
     public void onAttach(Context context) {
@@ -86,9 +67,6 @@ public class ChoicesFragment extends Fragment implements View.OnClickListener {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(int choice);
+        void onFragmentInteraction(Uri uri);
     }
-
-
-
 }
