@@ -11,13 +11,12 @@
         android:name="group9.tcss450.uw.edu.challangeapp.FlowerFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2" />
+        android:layout_weight="1" />
     <fragment
         android:id="@+id/choice"
         android:name="group9.tcss450.uw.edu.challangeapp.ChoicesFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_margin="@dimen/activity_horizontal_margin"
         android:background="?android:attr/detailsElementBackground" />
 </LinearLayout>
