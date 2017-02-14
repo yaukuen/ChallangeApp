@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity implements ChoicesFragment.O
             default:
                 DisplayInfoFragment mDis = new DisplayInfoFragment();
                 Bundle args = new Bundle();
-                args.putSerializable("username", username);
-                args.putSerializable("password", password);
+                args.putSerializable(DisplayInfoFragment.USERNAME, username);
+                args.putSerializable(DisplayInfoFragment.PASSWORD, password);
                 mDis.setArguments(args);
                 getSupportFragmentManager()
                         .beginTransaction()
