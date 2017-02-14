@@ -46,10 +46,10 @@ public class ChoicesFragment extends Fragment implements View.OnClickListener {
         if (mListener != null) {
             switch (view.getId()) {
                 case R.id.loginButton:
-                    mListener.onFragmentInteraction(R.id.loginButton);
+                    mListener.onFragmentInteraction(R.id.loginButton, "", "");
                     break;
                 case R.id.registrationButton:
-                    mListener.onFragmentInteraction(R.id.registrationButton);
+                    mListener.onFragmentInteraction(R.id.registrationButton, "", "");
                     break;
             }
         }
@@ -86,7 +86,7 @@ public class ChoicesFragment extends Fragment implements View.OnClickListener {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(int choice);
+        void onFragmentInteraction(int choice, String username, String password);
     }
 
 

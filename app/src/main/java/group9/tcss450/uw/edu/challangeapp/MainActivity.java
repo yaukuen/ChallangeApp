@@ -1,33 +1,31 @@
 package group9.tcss450.uw.edu.challangeapp;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements ChoicesFragment.OnFragmentInteractionListener,
-        LoginFragment.OnFragmentInteractionListener, RegistrationFragment.OnFragmentInteractionListener,
-DisplayInfoFragment.OnFragmentInteractionListener{
+        LoginFragment.OnFragmentInteractionListener, RegistrationFragment.OnFragmentInteractionListener {
 
-    private LoginFragment mLogin;
-    private RegistrationFragment mReg;
-    private DisplayInfoFragment mDis;
+//    private LoginFragment mLogin;
+//    private RegistrationFragment mReg;
+//    private DisplayInfoFragment mDis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        if (savedInstanceState == null) {
-//            if (findViewById(R.id.fragmentContainer) != null) {
-//                getSupportFragmentManager().beginTransaction()
-//                        .add(R.id.fragmentContainer, new ChoicesFragment())
-//                        .commit();
-//            }
-//        }
+        if (savedInstanceState == null) {
+            if (findViewById(R.id.choice) != null) {
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.choice, new ChoicesFragment())
+                        .commit();
+            }
+        }
     }
 
     @Override
-    public void onFragmentInteraction(int choice) {
+    public void onFragmentInteraction(int choice, String username, String password) {
 //        Log.d("ACTIVITY", "Red: ");
 //
 //        FlowerFragment flowerFragment;
@@ -47,31 +45,49 @@ DisplayInfoFragment.OnFragmentInteractionListener{
 //            // Commit the transaction
 //            transaction.commit();
 //        }
-        if (choice == R.id.loginButton) {
-            mLogin = new LoginFragment();
-            FragmentTransaction transaction = getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragmentContainer, mLogin)
-                    .addToBackStack(null);
-            // Commit the transaction
-            transaction.commit();
-
-        } else if (choice == R.id.registrationButton) {
-            mReg = new RegistrationFragment();
-            FragmentTransaction transaction = getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.choice, mReg)
-                    .addToBackStack(null);
-            // Commit the transaction
-            transaction.commit();
-        } else if (choice == R.id.loginSignin || choice == R.id.regSignup) {
-            mDis = new DisplayInfoFragment();
-            FragmentTransaction transaction = getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragmentContainer, mDis)
-                    .addToBackStack(null);
-            // Commit the transaction
-            transaction.commit();
+//        FragmentTransaction transaction = getSupportFragmentManager();
+        switch (choice) {
+            case R.id.loginButton:
+                LoginFragment mLogin = new LoginFragment();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.choice, mLogin)
+                        .addToBackStack(null)
+                        // Commit the transaction
+                        .commit();
+                break;
+            case R.id.registrationButton:
+                RegistrationFragment mReg = new RegistrationFragment();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.choice, mReg)
+                        .addToBackStack(null)
+                        // Commit the transaction
+                        .commit();
+                break;
+            default:
+                DisplayInfoFragment mDis = new DisplayInfoFragment();
+                Bundle args = new Bundle();
+                args.putSerializable("username", username);
+                args.putSerializable("password", password);
+                mDis.setArguments(args);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, mDis)
+                        .addToBackStack(null)
+                        // Commit the transaction
+                        .commit();
+                break;
         }
+//        if (choice ==  R.id.loginButton) {
+//            mLogin = new LoginFragment();
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.choice, mLogin)
+//                        .addToBackStack(null)
+//                        // Commit the transaction
+//                        .commit();
+//        }
+
     }
 }

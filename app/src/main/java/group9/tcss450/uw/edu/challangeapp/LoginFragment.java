@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 /**
@@ -15,9 +17,14 @@ import android.view.ViewGroup;
  * {@link LoginFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment /*implements View.OnClickListener*/ {
+
+    public static final String LOGIN = "loginKey";
+    public static final String PASSWORD = "loginPassword";
 
     private OnFragmentInteractionListener mListener;
+
+    private View mV;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -28,8 +35,34 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        mV = inflater.inflate(R.layout.fragment_login, container, false);
+        Button button = (Button) mV.findViewById(R.id.loginSignin);
+//        button.setOnClickListener(this);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    EditText editText = (EditText) mV.findViewById(R.id.loginName);
+                    String userName = editText.getText().toString();
+                    editText = (EditText) mV.findViewById(R.id.loginPassword);
+                    String password = editText.getText().toString();
+                    mListener.onFragmentInteraction(R.id.loginSignin, userName, password);
+                }
+            }
+        });
+        return mV;
     }
+
+//    @Override
+//    public void onClick(View v) {
+//        if (mListener != null) {
+//            EditText editText = (EditText) mV.findViewById(R.id.loginName);
+//            String userName = editText.getText().toString();
+//            editText = (EditText) mV.findViewById(R.id.loginPassword);
+//            String password = editText.getText().toString();
+//            mListener.onFragmentInteraction(R.id.loginSignin, userName, password);
+//        }
+//    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -53,6 +86,14 @@ public class LoginFragment extends Fragment {
         mListener = null;
     }
 
+
+//    @Override
+//    public void onClick(View v) {
+//        if (mListener != null) {
+//            EditText et = (EditText)
+//        }
+//    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -65,6 +106,6 @@ public class LoginFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(int choice);
+        void onFragmentInteraction(int choice, String username, String password);
     }
 }
