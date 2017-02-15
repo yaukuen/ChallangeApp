@@ -65,19 +65,19 @@ public class MainActivity extends AppCompatActivity implements ChoicesFragment.O
                         // Commit the transaction
                         .commit();
                 break;
-            default:
-                DisplayInfoFragment mDis = new DisplayInfoFragment();
-                Bundle args = new Bundle();
-                args.putSerializable(DisplayInfoFragment.USERNAME, username);
-                args.putSerializable(DisplayInfoFragment.PASSWORD, password);
-                mDis.setArguments(args);
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragmentContainer, mDis)
-                        .addToBackStack(null)
-                        // Commit the transaction
-                        .commit();
-                break;
+//            default:
+//                DisplayInfoFragment mDis = new DisplayInfoFragment();
+//                Bundle args = new Bundle();
+//                args.putSerializable(DisplayInfoFragment.USERNAME, username);
+//                args.putSerializable(DisplayInfoFragment.PASSWORD, password);
+//                mDis.setArguments(args);
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fragmentContainer, mDis)
+//                        .addToBackStack(null)
+//                        // Commit the transaction
+//                        .commit();
+//                break;
         }
 //        if (choice ==  R.id.loginButton) {
 //            mLogin = new LoginFragment();
