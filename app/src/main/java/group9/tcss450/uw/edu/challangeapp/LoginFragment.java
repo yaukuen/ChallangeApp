@@ -168,7 +168,7 @@ public class LoginFragment extends Fragment /*implements View.OnClickListener*/ 
                         .commit();
                 // WHY THIS ONE DOESN'T WORK!!!!!!!!!?????????????????
 //                FragmentTransaction ft = fm.beginTransaction();
-//                        ft.replace(R.id.fragmentContainer, mDis)
+//                        ft.replace(R.id.fragmentContainer, mSL)
 //                        .addToBackStack(null)
 //                        // Commit the transaction
 //                        .commit();
