@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements ChoicesFragment.OnFragmentInteractionListener,
-        LoginFragment.OnFragmentInteractionListener, RegistrationFragment.OnFragmentInteractionListener {
+        LoginFragment.OnFragmentInteractionListener, RegistrationFragment.OnFragmentInteractionListener, GetSetlistFragement.OnFragmentInteractionListener {
 
 //    private LoginFragment mLogin;
 //    private RegistrationFragment mReg;
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements ChoicesFragment.O
 //                        .addToBackStack(null)
 //                        // Commit the transaction
 //                        .commit();
+
 //                break;
 //            default:
 //                DisplayInfoFragment mDis = new DisplayInfoFragment();
@@ -97,6 +98,11 @@ public class MainActivity extends AppCompatActivity implements ChoicesFragment.O
 //                        // Commit the transaction
 //                        .commit();
 //        }
+
+    }
+
+    @Override
+    public void onFragmentInteraction() {
 
     }
 }

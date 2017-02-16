@@ -1,5 +1,6 @@
 package group9.tcss450.uw.edu.challangeapp;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -64,13 +65,13 @@ public class GetSetlistFragement extends Fragment implements View.OnClickListene
         AsyncTask<String, Void, String> task = null;
         if (mListener != null) {
             Log.d("result", String.valueOf(mListener));
-//            switch (mV.getId()) {
-//                case R.id.search_random_button:
-////                    mListener.onFragmentInteraction(null);
-//                    Button b = (Button) mV.findViewById(R.id.search_random_button);
-//                    b.setClickable(false);
-//                    task = new RandomTask();
-//                    break;
+            switch (view.getId()) {
+                case R.id.search_random_button:
+//                    mListener.onFragmentInteraction(null);
+                    Button b = (Button) mV.findViewById(R.id.search_random_button);
+                    b.setClickable(false);
+                    task = new RandomTask();
+                    break;
 ////                case R.id.search_recent_button:
 ////                    mListener.onFragmentInteraction(null);
 ////                    break;
@@ -79,11 +80,11 @@ public class GetSetlistFragement extends Fragment implements View.OnClickListene
 ////                    String s = actv.getText().toString();
 ////                    mListener.onFragmentInteraction(s);
 ////                    break;
-//            }
-            Button b = (Button) mV.findViewById(R.id.search_random_button);
-            b.setClickable(false);
-            mTV.setText("HAHA");
-            task = new RandomTask();
+            }
+//            Button b = (Button) mV.findViewById(R.id.search_random_button);
+//            b.setClickable(false);
+//            mTV.setText("HAHA");
+//            task = new RandomTask();
             task.execute(PARTIAL_URL);
         }
     }
@@ -94,16 +95,16 @@ public class GetSetlistFragement extends Fragment implements View.OnClickListene
 //        }
 //    }
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
 
     @Override
     public void onDetach() {
@@ -123,7 +124,7 @@ public class GetSetlistFragement extends Fragment implements View.OnClickListene
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(int choice, String username, String password);
+        void onFragmentInteraction();
 //        void onFragmentInteraction(int choice, String username, String password);
     }
 
