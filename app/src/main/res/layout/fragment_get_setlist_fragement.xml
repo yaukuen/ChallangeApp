@@ -1,13 +1,47 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context="group9.tcss450.uw.edu.challangeapp.GetSetlistFragement">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tv_testing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="testing" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/search_random_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_vertical_margin"
+        android:text="Random" />
+
+    <Button
+        android:id="@+id/search_recent_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_vertical_margin"
+        android:text="Recent" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:completionThreshold="1"
+        android:hint="Show ID"
+        android:imeOptions="actionDone"
+        android:inputType="number"
+        android:padding="@dimen/activity_vertical_margin" />
+
+    <Button
+        android:id="@+id/search_id_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_vertical_margin"
+        android:text="Search by ID" />
+
+
+</LinearLayout>

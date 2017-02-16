@@ -8,4 +8,17 @@
     <string name="login">Login</string>
     <string name="sign_up">Sign Up</string>
     <string name="confirm_password">Confirm Password</string>
+
+    <string-array name="auto_complete_show_id">
+        <item>1479253444</item>
+        <item>1252691618</item>
+        <item>1252633496</item>
+        <item>1252343167</item>
+        <item>1250887835</item>
+        <item>1252877083</item>
+        <item>1252956590</item>
+        <item>1252989413</item>
+        <item>1479253406</item>
+        <item>1475149035</item>
+    </string-array>
 </resources>

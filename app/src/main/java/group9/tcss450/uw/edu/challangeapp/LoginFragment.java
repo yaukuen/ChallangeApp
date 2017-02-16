@@ -1,9 +1,11 @@
 package group9.tcss450.uw.edu.challangeapp;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +21,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-
-import static android.R.attr.name;
 
 
 /**
@@ -118,7 +118,7 @@ public class LoginFragment extends Fragment /*implements View.OnClickListener*/ 
             if (strings.length != 3) {
                 throw new IllegalArgumentException("Three String arguments required.");
             }
-            String  response = "";
+            String response = "";
             HttpURLConnection urlConnection = null;
             String url = strings[0];
             try {
@@ -128,9 +128,9 @@ public class LoginFragment extends Fragment /*implements View.OnClickListener*/ 
                 urlConnection.setDoOutput(true);
                 OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
                 String data = URLEncoder.encode("my_login_name", "UTF-8") +
-                         "=" + URLEncoder.encode(strings[1], "UTF-8") +
-                         "&" + URLEncoder.encode("my_login_pwd", "UTF-8") +
-                              "=" + URLEncoder.encode(strings[2], "UTF-8");
+                        "=" + URLEncoder.encode(strings[1], "UTF-8") +
+                        "&" + URLEncoder.encode("my_login_pwd", "UTF-8") +
+                        "=" + URLEncoder.encode(strings[2], "UTF-8");
                 wr.write(data);
                 wr.flush();
                 InputStream content = urlConnection.getInputStream();
@@ -151,10 +151,27 @@ public class LoginFragment extends Fragment /*implements View.OnClickListener*/ 
 
         @Override
         protected void onPostExecute(String result) {
-            if (result.startsWith("Unable to")) {
+            if (result.startsWith("Unable to")/* ||result.isEmpty() */) {
                 Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity().getApplicationContext(), result +"\nLogin Successful!", Toast.LENGTH_LONG).show();
+                GetSetlistFragement mSL = new GetSetlistFragement();
+//                Bundle args = new Bundle();
+//                args.putSerializable(DisplayInfoFragment.USERNAME, username);
+//                args.putSerializable(DisplayInfoFragment.PASSWORD, password);
+//                mDis.setArguments(args);
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction()
+                        .replace(R.id.fragmentContainer, mSL)
+                        .addToBackStack(null)
+                        // Commit the transaction
+                        .commit();
+                // WHY THIS ONE DOESN'T WORK!!!!!!!!!?????????????????
+//                FragmentTransaction ft = fm.beginTransaction();
+//                        ft.replace(R.id.fragmentContainer, mDis)
+//                        .addToBackStack(null)
+//                        // Commit the transaction
+//                        .commit();
             }
             Log.d("result", result);
         }

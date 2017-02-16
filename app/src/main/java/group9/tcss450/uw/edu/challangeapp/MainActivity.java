@@ -65,6 +65,15 @@ public class MainActivity extends AppCompatActivity implements ChoicesFragment.O
                         // Commit the transaction
                         .commit();
                 break;
+//            case R.id.loginSignin:
+//                GetSetlistFragement mGet = new GetSetlistFragement();
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fragmentContainer, mGet)
+//                        .addToBackStack(null)
+//                        // Commit the transaction
+//                        .commit();
+//                break;
 //            default:
 //                DisplayInfoFragment mDis = new DisplayInfoFragment();
 //                Bundle args = new Bundle();
