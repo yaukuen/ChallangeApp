@@ -162,17 +162,18 @@ public class GetSetlistFragement extends Fragment implements View.OnClickListene
             return response;
         }
 
-//        @Override
-        protected void onPostExecute(JSONObject result) throws JSONException {
+        @Override
+        protected void onPostExecute(String result) {
 //            if (result.startsWith("Unable to") || result.isEmpty()) {
 //                Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_SHORT).show();
 //            } else {
             Toast.makeText(getActivity().getApplicationContext(), "heyheyhey", Toast.LENGTH_LONG).show();
-            Setlist setlist = Setlist.setlistFromJson(result);
+//            JSONObject jsObject = new JSONObject(result);
+//            Setlist setlist = Setlist.setlistFromJson(jsObject);
             SetlistFragment mSL = new SetlistFragment();
-                Bundle args = new Bundle();
-                args.putSerializable("info", setlist);
-                mSL.setArguments(args);
+            Bundle args = new Bundle();
+//            args.putSerializable("info", setlist);
+            mSL.setArguments(args);
             FragmentManager fm = getFragmentManager();
             fm.beginTransaction()
                     .replace(R.id.fragmentContainer, mSL)
@@ -188,5 +189,32 @@ public class GetSetlistFragement extends Fragment implements View.OnClickListene
 //            }
 //            Log.d("result", result);
         }
+
+////        @Override
+//        protected void onPostExecute(JSONObject result) throws JSONException {
+////            if (result.startsWith("Unable to") || result.isEmpty()) {
+////                Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+////            } else {
+//            Toast.makeText(getActivity().getApplicationContext(), "heyheyhey", Toast.LENGTH_LONG).show();
+//            Setlist setlist = Setlist.setlistFromJson(result);
+//            SetlistFragment mSL = new SetlistFragment();
+//                Bundle args = new Bundle();
+//                args.putSerializable("info", setlist);
+//                mSL.setArguments(args);
+//            FragmentManager fm = getFragmentManager();
+//            fm.beginTransaction()
+//                    .replace(R.id.fragmentContainer, mSL)
+//                    .addToBackStack(null)
+//                    // Commit the transaction
+//                    .commit();
+//            // WHY THIS ONE DOESN'T WORK!!!!!!!!!?????????????????
+////                FragmentTransaction ft = fm.beginTransaction();
+////                        ft.replace(R.id.fragmentContainer, mDis)
+////                        .addToBackStack(null)
+////                        // Commit the transaction
+////                        .commit();
+////            }
+////            Log.d("result", result);
+//        }
     }
 }
