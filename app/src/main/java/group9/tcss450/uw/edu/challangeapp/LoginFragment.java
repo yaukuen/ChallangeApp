@@ -151,15 +151,12 @@ public class LoginFragment extends Fragment /*implements View.OnClickListener*/ 
 
         @Override
         protected void onPostExecute(String result) {
-            if (result.startsWith("Unable to")/* ||result.isEmpty() */) {
+            // Without "|| result.isEmoty()" can login even failed
+            if (result.startsWith("Unable to") /*||result.isEmpty()*/) {
                 Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getActivity().getApplicationContext(), result +"\nLogin Successful!", Toast.LENGTH_LONG).show();
                 GetSetlistFragement mSL = new GetSetlistFragement();
-//                Bundle args = new Bundle();
-//                args.putSerializable(DisplayInfoFragment.USERNAME, username);
-//                args.putSerializable(DisplayInfoFragment.PASSWORD, password);
-//                mDis.setArguments(args);
                 FragmentManager fm = getFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.fragmentContainer, mSL)

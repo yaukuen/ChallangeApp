@@ -15,11 +15,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import group9.tcss450.uw.edu.challangeapp.model.Setlist;
+
+import static android.R.attr.data;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -155,17 +162,17 @@ public class GetSetlistFragement extends Fragment implements View.OnClickListene
             return response;
         }
 
-        @Override
-        protected void onPostExecute(String result) {
+//        @Override
+        protected void onPostExecute(JSONObject result) throws JSONException {
 //            if (result.startsWith("Unable to") || result.isEmpty()) {
 //                Toast.makeText(getActivity().getApplicationContext(), result, Toast.LENGTH_SHORT).show();
 //            } else {
             Toast.makeText(getActivity().getApplicationContext(), "heyheyhey", Toast.LENGTH_LONG).show();
+            Setlist setlist = Setlist.setlistFromJson(result);
             SetlistFragment mSL = new SetlistFragment();
-//                Bundle args = new Bundle();
-//                args.putSerializable(DisplayInfoFragment.USERNAME, username);
-//                args.putSerializable(DisplayInfoFragment.PASSWORD, password);
-//                mDis.setArguments(args);
+                Bundle args = new Bundle();
+                args.putSerializable("info", setlist);
+                mSL.setArguments(args);
             FragmentManager fm = getFragmentManager();
             fm.beginTransaction()
                     .replace(R.id.fragmentContainer, mSL)
@@ -179,8 +186,7 @@ public class GetSetlistFragement extends Fragment implements View.OnClickListene
 //                        // Commit the transaction
 //                        .commit();
 //            }
-            Log.d("result", result);
-
+//            Log.d("result", result);
         }
     }
 }
